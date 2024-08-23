@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
+const cors = require("cors")
 const mongoose = require("mongoose");
 
 const Account = require("./models/account");
@@ -22,6 +23,9 @@ app.use(
     cookie: { secure: false }, // Set secure to true if using HTTPS
   })
 );
+app.use(cors({
+  origin: "https://frontend-online-code-editor.vercel.app/" // Replace with your frontend domain
+}));
 
 // const dbURI =
 //   "mongodb+srv://laplaces42:Swagdude1@cluster0.2jbw2.mongodb.net/accounts?retryWrites=true&w=majority&appName=Cluster0";
@@ -33,7 +37,7 @@ mongoose
   .then((result) => {
     console.log("connected to db");
 
-    app.listen(4000);
+    app.listen(process.env.PORT);
   })
   .catch((err) => {
     console.log(err);
