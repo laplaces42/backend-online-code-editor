@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
-const cors = require("cors")
+const cors = require("cors");
 const mongoose = require("mongoose");
 
 const Account = require("./models/account");
@@ -23,11 +23,14 @@ app.use(
     cookie: { secure: false }, // Set secure to true if using HTTPS
   })
 );
-app.use(cors({
-  origin: "https://frontend-online-code-editor.vercel.app/" // Replace with your frontend domain
-}));
+app.use(
+  cors({
+    origin: "https://frontend-online-code-editor.vercel.app/", // Replace with your frontend domain
+    methods: "GET,POST,PUT,DELETE",
+  })
+);
 
-const dbURI = process.env.MONGODB_URI
+const dbURI = process.env.MONGODB_URI;
 
 mongoose
   .connect(dbURI)
