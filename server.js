@@ -25,7 +25,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: "https://frontend-online-code-editor.vercel.app/", // Replace with your frontend domain
+    origin: "https://frontend-online-code-editor.vercel.app", // Replace with your frontend domain
     methods: "GET,POST,PUT,DELETE",
   })
 );
