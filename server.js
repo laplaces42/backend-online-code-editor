@@ -27,9 +27,6 @@ app.use(cors({
   origin: "https://frontend-online-code-editor.vercel.app/" // Replace with your frontend domain
 }));
 
-// const dbURI =
-//   "mongodb+srv://laplaces42:Swagdude1@cluster0.2jbw2.mongodb.net/accounts?retryWrites=true&w=majority&appName=Cluster0";
-
 const dbURI = process.env.MONGODB_URI
 
 mongoose
