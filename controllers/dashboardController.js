@@ -49,6 +49,7 @@ const loadDashboard = async (req, res) => {
       });
     }
   } else {
+    console.log('no access')
     return res.status(404).json({
       status: "error",
       message: "No access",
