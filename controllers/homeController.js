@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 
 const logIn = async (req, res) => {
   try {
+    console.log(true)
     if (!req.body.username || !req.body.password) {
       return res.status(401).json({
         status: "error",
