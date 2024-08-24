@@ -19,6 +19,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
+  cors({
+    origin: "https://frontend-online-code-editor.vercel.app", // Replace with your frontend domain
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
+app.use(
   session({
     store: MongoStore.create({ mongoUrl: dbURI }),
     secret: process.env.SESSION_SECRET,
@@ -27,13 +34,7 @@ app.use(
     cookie: { secure: true, sameSite: "none" }, // Set secure to true if using HTTPS
   })
 );
-app.use(
-  cors({
-    origin: "https://frontend-online-code-editor.vercel.app", // Replace with your frontend domain
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
+
 
 mongoose
   .connect(dbURI)
