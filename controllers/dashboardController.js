@@ -16,7 +16,6 @@ const htmlText = `<!DOCTYPE html>
 
 const loadDashboard = async (req, res) => {
   const id = req.params.id;
-  console.log('request', req)
   console.log('session', req.session)
 
   if (req.session.userId) {

@@ -30,11 +30,10 @@ app.use(
     store: MongoStore.create({ mongoUrl: dbURI }),
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true, sameSite: "none" }, // Set secure to true if using HTTPS
+    saveUninitialized: false,
+    cookie: { secure: true, sameSite: "none", httpOnly: true }, // Set secure to true if using HTTPS
   })
 );
-
 
 mongoose
   .connect(dbURI)
