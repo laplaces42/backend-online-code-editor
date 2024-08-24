@@ -22,6 +22,7 @@ const logIn = async (req, res) => {
 
       if (passwordMatch) {
         req.session.userId = account._id.toString();
+        await req.session.save()
         console.log(req.session)
 
         return res.status(200).json({
