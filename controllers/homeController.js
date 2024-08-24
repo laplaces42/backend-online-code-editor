@@ -22,7 +22,13 @@ const logIn = async (req, res) => {
 
       if (passwordMatch) {
         req.session.userId = account._id.toString();
-        await req.session.save()
+        req.session.save((err) => {
+          if (err) {
+            console.log("Session save error:", err);
+          } else {
+            console.log("Session saved successfully");
+          }
+        })
         console.log(req.session)
 
         return res.status(200).json({
