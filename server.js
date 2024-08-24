@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
@@ -12,11 +13,14 @@ const homeRoutes = require("./routes/homeRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const projectRoutes = require("./routes/projectRoutes");
 
+const dbURI = process.env.MONGODB_URI;
 const app = express();
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
+    store: MongoStore.create({ mongoUrl: dbURI }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
@@ -30,8 +34,6 @@ app.use(
     credentials: true,
   })
 );
-
-const dbURI = process.env.MONGODB_URI;
 
 mongoose
   .connect(dbURI)

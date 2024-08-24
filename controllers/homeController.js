@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 
 const logIn = async (req, res) => {
   try {
-    console.log(true)
+    
     if (!req.body.username || !req.body.password) {
       return res.status(401).json({
         status: "error",
@@ -22,6 +22,7 @@ const logIn = async (req, res) => {
 
       if (passwordMatch) {
         req.session.userId = account._id.toString();
+        console.log(req.session)
 
         return res.status(200).json({
           status: "success",
